@@ -1,0 +1,411 @@
+:root {
+    --color-primary: #2B59FF;
+    --color-dark: #1E1E1E;
+    --color-light: #f7f6f2;
+    --main-color: #a2924f;
+}
+
+body {
+    font-family: Lato, sans-serif;
+    color: var(--color-dark);
+    background-color: var(--color-light);
+}
+
+.container {
+    max-width: 1200px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+/* ===== Header ===== */
+.header {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.header__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    background: #fff;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.nav a {
+    margin: 0 16px;
+    text-decoration: none;
+    color: #222;
+}
+
+.header-btn {
+    background: #6b5a2b;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* ===== Hero ===== */
+.hero {
+    position: relative;
+    height: 80vh;
+    padding: 40px;
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.hero__bg {
+    position: absolute;
+    inset: 0;
+    background: url("../assets/images/hero.jpg") center / cover no-repeat;
+    border-radius: 32px;
+    z-index: 1;
+}
+
+/* затемнение для читаемости текста */
+.hero__bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 32px;
+}
+
+/* ===== Парящий текст ===== */
+.hero__content {
+    text-align: right;
+    position: absolute;
+    right: 80px;
+    bottom: 80px;
+    max-width: 520px;
+    color: #fff;
+    z-index: 2;
+}
+
+.hero__content h1 {
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+
+.hero__content p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.nav a:hover {
+    color: var(--color-primary);
+}
+
+/* Hero */
+
+.hero__inner {
+    max-width: 600px;
+}
+
+.hero__title {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero__text {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 16px 32px;
+    background: var(--color-primary);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: transform .3s, box-shadow .3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .15);
+}
+
+/* ===== Section ===== */
+
+.section-title {
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* ===== Features ===== */
+
+.features {
+    padding: 120px 0;
+    background-color: #f7f8fc;
+}
+
+.features__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.feature-card {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 16px;
+    transition: transform .3s, box-shadow .3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .1);
+}
+
+.feature-card__icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 24px;
+}
+
+.feature-card__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.feature-card__title {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.feature-card__text {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* ===== Animation ===== */
+
+.animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all .8s ease;
+}
+
+.animate.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== About ===== */
+.about {
+    background: #f9f7f3;
+    padding-top: 120px;
+}
+
+.about__content {
+    align-content: center;
+}
+
+.about__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+}
+
+.about__title {
+    font-size: 58px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+
+.about__title span {
+    color: var(--main-color);
+}
+
+.about__text {
+    font-size: 18px;
+    color: #555;
+}
+
+.about__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.about-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.about-card__num {
+    font-size: 54px;
+    display: block;
+    margin-top: 20px;
+}
+
+.about-card h3 {
+    font-size: 24px;
+    color: var(--main-color);
+    white-space: nowrap;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.about-card p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* ===== Apartments ===== */
+
+.apartments {
+    padding: 120px 0;
+    overflow: hidden;
+}
+
+.apartments .section-title span {
+    color: var(--main-color);
+}
+
+.apartment-card {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: 690px;
+    background: #fff;
+    border-radius: 24px;
+    overflow: visible;
+    user-select: none;
+}
+
+.apartment-card img {
+    width: 470px;
+    height: 440px;
+    object-fit: contain;
+}
+
+.apartment-media {
+    width: 470px;
+    height: 440px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 4px #a2924f;
+    border-style: solid;
+}
+
+/* Images */
+.apartment-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity .4s ease;
+}
+
+.apartment-media img.active {
+    opacity: 1;
+}
+
+/* Hover zones */
+.media-zones {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(var(--zones), 1fr);
+    z-index: 5;
+}
+
+.media-zones span {
+    cursor: pointer;
+}
+
+.apartment-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 10px;
+    padding-left: 40px;
+    text-align: right;
+}
+
+.apartment-info p, h3 {
+    margin: 8px 0px 8px 0px;
+}
+
+.apartment-info span {
+    color: var(--main-color);
+}
+
+.apartment-price {
+    margin-top: auto;
+    font-weight: 600;
+    color: #b49a52;
+}
+
+/* ===== Slider ===== */
+
+.slider {
+    position: relative;
+    width: 100%;
+    cursor: grab;
+}
+
+.slider-window {
+    cursor: grab;
+}
+
+.slider-window:active {
+    cursor: grabbing;
+}
+
+.slider-track {
+    width: max-content;
+    display: flex;
+    gap: 20px;
+    padding: 40px;
+    background: #fff;
+    border-radius: 40px;
+    will-change: transform;
+    transition: transform .4s ease;
+
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .15);
+}
+
+.slider-btn.prev {
+    left: -24px;
+}
+
+.slider-btn.next {
+    right: -24px;
+}
