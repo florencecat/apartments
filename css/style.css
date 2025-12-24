@@ -5,10 +5,19 @@
     --main-color: #a2924f;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-    font-family: Lato, sans-serif;
+    font-family: Arimo, sans-serif;
+    font-weight: 600;
     color: var(--color-dark);
     background-color: var(--color-light);
+}
+
+section {
+    padding-top: 60px;
 }
 
 .container {
@@ -34,12 +43,13 @@ body {
     border-radius: 999px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
 }
 
 .logo {
     font-weight: 700;
     font-size: 20px;
+    margin-right: auto;
 }
 
 .nav a {
@@ -149,10 +159,16 @@ body {
     margin-bottom: 60px;
 }
 
+.section-colored-title {
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--main-color);
+}
+
 /* ===== Features ===== */
 
 .features {
-    padding: 120px 0;
     background-color: #f7f8fc;
 }
 
@@ -213,7 +229,6 @@ body {
 /* ===== About ===== */
 .about {
     background: #f9f7f3;
-    padding-top: 120px;
 }
 
 .about__content {
@@ -276,7 +291,6 @@ body {
 /* ===== Apartments ===== */
 
 .apartments {
-    padding: 120px 0;
     overflow: hidden;
 }
 
@@ -347,7 +361,8 @@ body {
     width: 200px;
 }
 
-.apartment-info p, h3 {
+.apartment-info p,
+h3 {
     margin: 8px 0px 8px 0px;
 }
 
@@ -386,7 +401,6 @@ body {
     border-radius: 40px;
     will-change: transform;
     transition: transform .4s ease;
-
 }
 
 .slider-btn {
@@ -408,4 +422,238 @@ body {
 
 .slider-btn.next {
     right: -24px;
+}
+
+.location__grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+}
+
+.location__about {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 30px 60px 30px;
+    background: #fff;
+    border-radius: 40px;
+    margin-top: auto;
+    font-size: large;
+    margin: auto;
+}
+
+.location__about span {
+    color: var(--main-color);
+}
+
+.location__map {
+    overflow: hidden;
+    width: 800px;
+    height: 476px;
+    border-radius: 40px;
+    border: 3px solid var(--main-color);
+}
+
+.reviews {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.reviews-title {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+.reviews__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* окно */
+.review-window {
+    width: 45%;
+    overflow: hidden;
+}
+
+/* трек */
+.review-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+/* карточка */
+.review {
+    margin-right: 20px;
+    min-width: 100%;
+    background: #fff;
+    border-radius: 32px;
+    padding: 32px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.review-name {
+    margin-top: auto;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.review-stars {
+    margin-top: auto;
+    color: #c2a85d;
+    margin: 8px 0;
+}
+
+.review-text {
+    margin-top: auto;
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 16px 0;
+}
+
+.review-date {
+    margin-top: auto;
+    font-size: 14px;
+    color: #888;
+}
+
+/* кнопки */
+.review__slider-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s;
+}
+
+.review__slider-btn:hover {
+    background: #e0e0e0;
+}
+
+/* адаптив */
+@media (max-width: 600px) {
+    .reviews-slider {
+        flex-direction: column;
+    }
+
+    .nav {
+        order: 2;
+    }
+}
+
+.reviews-counter {
+    margin-top: 24px;
+    font-size: 16px;
+    color: #999;
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+.reviews-counter .current {
+    color: #000;
+    font-weight: 500;
+}
+
+.contacts__container {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 24px;
+}
+
+.contacts__bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 32px;
+    z-index: 1;
+}
+
+.contacts__form-container {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 40px;
+    padding: 40px;
+    gap: 12px;
+}
+
+.contacts__form-title {
+    font-size: 24px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.contacts__form-title span {
+    color: var(--main-color);
+}
+
+.contacts__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contacts__form input, textarea {
+    background: #f7f6f2;
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+}
+
+.contacts__form textarea {
+    height: 110px;
+}
+
+.contacts__form button {
+    padding: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+    border-radius: 16px;
+    border: none;
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform .3s, opacity .3s;
+    margin-right: 10px;
+}
+
+.vk-icon {
+    background-image: url("../assets/icons/vk.svg");
+}
+
+.tg-icon {
+    background-image: url("../assets/icons/tg.svg");
+}
+
+.contacts__info a:hover .icon {
+    transform: translateY(-4px);
+    opacity: .85;
+}
+
+.contacts__info {
+    padding: 24px;
+    width: auto;
+    background: url("../assets/images/ap4/ap-4-1.jpg") center / cover no-repeat;
+    border-radius: 40px;
+    border: 3px solid var(--main-color);
+    z-index: 1;
+}
+
+.contacts__info-links {
+    z-index: 2;
 }

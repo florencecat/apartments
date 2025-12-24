@@ -13,8 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
+    <script crossorigin src="https://cdn.jsdelivr.net/npm/@babel/standalone@7/babel.min.js"></script>
+    <script src="https://api-maps.yandex.ru/v3/?apikey=25b25e10-a4b3-4ce4-9853-da185ff69c95&lang=ru_RU"></script>
 </head>
 
 <body>
@@ -24,11 +26,11 @@
             <div class="logo">ОВАпарт</div>
 
             <nav class="nav">
-                <a href="#">Апартаменты</a>
+                <a href="#apartments">Апартаменты</a>
                 <a href="#">О нас</a>
-                <a href="#">Локации</a>
-                <a href="#">Отзывы</a>
-                <a href="#">Связаться</a>
+                <a href="#location">Локации</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#contacts">Связаться</a>
             </nav>
 
             <a href="#" class="header-btn">Подобрать вариант</a>
@@ -52,7 +54,7 @@
         </div>
     </section>
 
-    <section class="about">
+    <section id="about" class="about">
         <div class="container about__grid">
 
             <div class="about__content animate">
@@ -107,7 +109,7 @@
         </div>
     </section>
 
-    <section class="apartments">
+    <section id="apartments" class="apartments">
         <div class="container">
             <h2 class="section-title animate">
                 Наши <span>апартаменты</span>
@@ -186,7 +188,8 @@
                                     Шарикоподшипниковская улица, дом 2
                                 </p>
                                 <p class="apartment-desc">
-                                    Идеальная транспортная доступность до любого района города и исторических достопримечательностей
+                                    Идеальная транспортная доступность до любого района города и исторических
+                                    достопримечательностей
                                 </p>
                                 <span class="apartment-price">
                                     от 4 500 руб.
@@ -279,7 +282,73 @@
         </div>
     </section>
 
+    <section id="location" class="location">
+        <h2 class="section-colored-title animate">
+            Локации
+        </h2>
+        <div class="container location__grid">
+            <div class="container location__about">
+                <p>
+                    Наши апартаменты расположены в <span>удобных районах города</span> с развитой инфраструктурой.
+                </p>
+                <p>
+                    В шаговой доступности — <span>магазины, кафе, транспорт</span> и <span>прогулочные зоны</span>.
+                </p>
+                <p>
+                    Вы легко доберётесь до <span>центра</span> и <span>основных достопримечательностей</span>.
+                </p>
+            </div>
+            <div id="map" class="location__map">
+
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews">
+        <h2 class="section-colored-title animate">
+            Отзывы
+        </h2>
+
+        <div class="container reviews__container">
+            <button class="review__slider-btn prev" aria-label="Предыдущий отзыв">←</button>
+            <div class="review-window">
+                <div class="review-track"></div>
+            </div>
+            <button class="review__slider-btn next" aria-label="Следующий отзыв">→</button>
+        </div>
+
+        <div class="reviews-counter">
+            <span class="current">1</span>/<span class="total">0</span>
+        </div>
+    </section>
+
+    <footer id="contacts" class="contacts">
+        <div class="container contacts__container">
+            <div class="contacts__form-container">
+                <h3 class="contacts__form-title">
+                    Забронируйте <span>сейчас</span>
+                </h3>
+                <form class="contacts__form">
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="tel" placeholder="Ваш номер телефона" required>
+                    <textarea placeholder="Комментарий"></textarea>
+                    <button type="submit">Отправить</button>
+                </form>
+            </div>
+            <div class="contacts__info">
+                <a href="#" aria-label="Telegram">
+                    <span class="icon vk-icon"></span>
+                </a>
+                <a href="#" aria-label="WhatsApp">
+                    <span class="icon tg-icon"></span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
     <script src="js/main.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/reviews.js"></script>
 </body>
 
 </html>
