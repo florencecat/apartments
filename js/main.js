@@ -1,8 +1,6 @@
-const slider = document.querySelector('.slider-window');
-const track = document.querySelector('.slider-track');
-const slides = document.querySelectorAll('.apartment-card');
-const next = document.querySelector('.next');
-const prev = document.querySelector('.prev');
+const slider = document.querySelector('.apartments__slider-window');
+const track = document.querySelector('.apartments__slider-track');
+const slides = document.querySelectorAll('.apartment__card');
 
 let index = 0;
 let startX = 0;
@@ -12,17 +10,6 @@ let isDragging = false;
 
 const slideWidth = slides[0].offsetWidth + 24;
 const maxIndex = slides.length - Math.floor(slider.offsetWidth / slideWidth);
-
-// /* ===== КНОПКИ ===== */
-// next.addEventListener('click', () => {
-//   index = Math.min(index + 1, maxIndex);
-//   setPosition();
-// });
-
-// prev.addEventListener('click', () => {
-//   index = Math.max(index - 1, 0);
-//   setPosition();
-// });
 
 /* ===== TOUCH + MOUSE ===== */
 slider.addEventListener('touchstart', touchStart);
@@ -86,9 +73,9 @@ document.querySelectorAll('.animate').forEach(el => {
   observer.observe(el);
 });
 
-document.querySelectorAll('.apartment-media').forEach(media => {
+document.querySelectorAll('.apartment__media').forEach(media => {
   const images = media.querySelectorAll('img');
-  const zones = media.querySelectorAll('.media-zones span');
+  const zones = media.querySelectorAll('.apartment__media-zones span');
 
   media.style.setProperty('--zones', zones.length);
 

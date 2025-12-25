@@ -1,8 +1,8 @@
-const reviewTrack = document.querySelector('.review-track');
+const reviewTrack = document.querySelector('.review__track');
 const prevBtn = document.querySelector('.prev');
 const nextBtn = document.querySelector('.next');
-const currentEl = document.querySelector('.reviews-counter .current');
-const totalEl = document.querySelector('.reviews-counter .total');
+const currentEl = document.querySelector('.reviews__counter .current');
+const totalEl = document.querySelector('.reviews__counter .total');
 
 let reviews = [];
 let reviewIndex = 0;
@@ -19,10 +19,10 @@ fetch('data/reviews.json')
 function renderReviews() {
     reviewTrack.innerHTML = reviews.map(review => `
     <div class="review">
-      <div class="review-name">${review.name}</div>
-      <div class="review-stars">${'★'.repeat(5)}</div>
-      <div class="review-text">${review.text}</div>
-      <div class="review-date">${review.date}</div>
+      <div class="review__name">${review.name}</div>
+      <div class="review__stars">${'★'.repeat(5)}</div>
+      <div class="review__text">${review.text}</div>
+      <div class="review__date">${review.date}</div>
     </div>
   `).join('');
 }

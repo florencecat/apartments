@@ -22,10 +22,10 @@
 <body>
 
     <header class="header">
-        <div class="header__inner">
-            <div class="logo">ОВАпарт</div>
+        <div class="header__content">
+            <div class="header__logo"><span>ОВ</span>Апарт</div>
 
-            <nav class="nav">
+            <nav class="header__menu-items">
                 <a href="#apartments">Апартаменты</a>
                 <a href="#">О нас</a>
                 <a href="#location">Локации</a>
@@ -33,7 +33,7 @@
                 <a href="#contacts">Связаться</a>
             </nav>
 
-            <a href="#" class="header-btn">Подобрать вариант</a>
+            <a href="#" class="header__button">Подобрать вариант</a>
         </div>
     </header>
 
@@ -41,37 +41,86 @@
         <div class="hero__bg"></div>
 
         <div class="hero__content animate">
-            <h1>
+            <h1 class="hero__title">
                 Апартаменты<br>
                 в которые<br>
                 приятно возвращаться
             </h1>
 
-            <p>
-                Современные апартаменты.<br>
-                Для отдыха, командировок и длительного проживания.
+            <p class="hero__text">
+                Современные апартаменты<br>
+                Для отдыха, командировок и длительного проживания
             </p>
         </div>
     </section>
 
     <section id="about" class="about">
-        <div class="container about__grid">
+        <h2 class="section-colored-title animate">
+            О нас
+        </h2>
+        <div class="container about__container">
+            <div class="about__media-container">
+                <div class="about__media-rounded">
+                    <img src="assets/images/about/0.jpg">
+                </div>
+                <div class="about__media">
+                    <img src="assets/images/about/0.jpg">
+                </div>
 
-            <div class="about__content animate">
-                <h2 class="about__title">
+                <div class="about__media">
+                    <img src="assets/images/about/0.jpg">
+                </div>
+                <div class="about__media-rounded">
+                    <img src="assets/images/about/0.jpg">
+                </div>
+            </div>
+            <div class="about__info-container">
+                <h2>
+                    Приветствую!
+                </h2>
+                <p>
+                    Меня зовут <span>Ольга Воробьёва</span> — руководитель компании «ОВАпарт».
+                    Более 3 лет помогаю подобрать и забронировать комфортные апартаменты для краткосрочного проживания в
+                    престижных районах Москвы.
+                </p>
+                <h3>
+                    <span>Наши апартаменты</span> подойдут:
+                </h3>
+                <ul>
+                    <li>для командировок (предоставляем отчётные документы)</li>
+                    <li>для туристов (рядом метро и достопримечательности)</li>
+                    <li>для студентов, спортсменов и участников мероприятий</li>
+                    <li>для размещения гостей и родственников</li>
+                    <li>для иностранных гостей (общаемся на английском)</li>
+                </ul>
+                <h3>
+                    Комфортное проживание без скрытых условий
+                </h3>
+                <p>
+                    Прозрачная оплата и удобное дистанционное заселение по понятным инструкциям.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container features__grid">
+
+            <div class="features__content animate">
+                <h2 class="features__content-title">
                     <span>Почему</span> нас<br>
                     <span>выбирают</span>
                 </h2>
 
-                <p class="about__text">
+                <p class="features__content-text">
                     Мы предлагаем уютные апартаменты с продуманной планировкой
                     и современным интерьером.
                 </p>
             </div>
 
-            <div class="about__cards">
-                <div class="about-card animate">
-                    <span class="about-card__num">01</span>
+            <div class="features__cards">
+                <div class="features__card animate">
+                    <span class="features__card-number">01</span>
                     <h3>Комфорт как дома</h3>
                     <p>
                         Наши апартаменты укомплектованы всем необходимым:
@@ -79,8 +128,8 @@
                     </p>
                 </div>
 
-                <div class="about-card animate">
-                    <span class="about-card__num">02</span>
+                <div class="features__card animate">
+                    <span class="features__card-number">02</span>
                     <h3>Чистота и порядок</h3>
                     <p>
                         Профессиональная уборка перед каждым заездом.
@@ -88,8 +137,8 @@
                     </p>
                 </div>
 
-                <div class="about-card animate">
-                    <span class="about-card__num">03</span>
+                <div class="features__card animate">
+                    <span class="features__card-number">03</span>
                     <h3>Удобное расположение</h3>
                     <p>
                         Апартаменты рядом с транспортом, магазинами
@@ -97,8 +146,8 @@
                     </p>
                 </div>
 
-                <div class="about-card animate">
-                    <span class="about-card__num">04</span>
+                <div class="features__card animate">
+                    <span class="features__card-number">04</span>
                     <h3>Простое бронирование</h3>
                     <p>
                         Быстрое оформление, прозрачные условия
@@ -115,163 +164,151 @@
                 Наши <span>апартаменты</span>
             </h2>
 
-            <div class="slider">
-                <div class="slider-window">
-                    <div class="slider-track">
-                        <div class="apartment-card">
-                            <div class="apartment-media" data-images="2">
+            <div class="apartments__slider">
+                <div class="apartments__slider-window">
+                    <div class="apartments__slider-track">
+                        <div class="apartment__card">
+                            <div class="apartment__media" data-images="2">
                                 <img src="assets/images/ap1/ap-1-1.jpg" class="active" alt="">
                                 <img src="assets/images/ap1/ap-1-2.jpg" alt="">
 
-                                <div class="media-zones">
+                                <div class="apartment__media-zones">
                                     <span data-index="0"></span>
                                     <span data-index="1"></span>
                                 </div>
                             </div>
 
-                            <div class="apartment-info">
+                            <div class="apartment__info">
                                 <h3>Апартаменты<br><span>1 комната</span></h3>
 
-                                <p class="apartment-address">
-                                    ул. Автозаводская, 23Б
-                                </p>
-                                <p class="apartment-desc">
+                                <p>ул. Автозаводская, 23Б</p>
+                                <p class="apartment__info-desc">
                                     Уютная студия около метро ЗИЛ
                                 </p>
-                                <span class="apartment-price">
+                                <span class="apartment__info-price">
                                     от 5 500 руб.
                                 </span>
                             </div>
                         </div>
 
-                        <div class="apartment-card">
-                            <div class="apartment-media" data-images="2">
+                        <div class="apartment__card">
+                            <div class="apartment__media" data-images="2">
                                 <img src="assets/images/ap2/ap-2-1.jpg" class="active" alt="">
                                 <img src="assets/images/ap2/ap-2-2.jpg" alt="">
 
-                                <div class="media-zones">
+                                <div class="apartment__media-zones">
                                     <span data-index="0"></span>
                                     <span data-index="1"></span>
                                 </div>
                             </div>
 
-                            <div class="apartment-info">
+                            <div class="apartment__info">
                                 <h3>Апартаменты<br><span>1 комната</span></h3>
 
-                                <p class="apartment-address">
-                                    Шарикоподшипниковская улица, дом 2
-                                </p>
-                                <p class="apartment-desc">
+                                <p>Шарикоподшипниковская улица, дом 2</p>
+                                <p class="apartment__info-desc">
                                     Удобная локация<br>Приватный подъезд на 6 апартаментов, без выхода на жилые этажи
                                 </p>
-                                <span class="apartment-price">
+                                <span class="apartment__info-price">
                                     от 7 700 руб.
                                 </span>
                             </div>
                         </div>
 
-                        <div class="apartment-card">
-                            <div class="apartment-media" data-images="2">
+                        <div class="apartment__card">
+                            <div class="apartment__media" data-images="2">
                                 <img src="assets/images/ap3/ap-3-1.jpg" class="active" alt="">
                                 <img src="assets/images/ap3/ap-3-2.jpg" alt="">
 
-                                <div class="media-zones">
+                                <div class="apartment__media-zones">
                                     <span data-index="0"></span>
                                     <span data-index="1"></span>
                                 </div>
                             </div>
 
-                            <div class="apartment-info">
+                            <div class="apartment__info">
                                 <h3>Апартаменты<br><span>1 комната</span></h3>
 
-                                <p class="apartment-address">
-                                    Шарикоподшипниковская улица, дом 2
-                                </p>
-                                <p class="apartment-desc">
+                                <p>Шарикоподшипниковская улица, дом 2</p>
+                                <p class="apartment__info-desc">
                                     Идеальная транспортная доступность до любого района города и исторических
                                     достопримечательностей
                                 </p>
-                                <span class="apartment-price">
+                                <span class="apartment__info-price">
                                     от 4 500 руб.
                                 </span>
                             </div>
                         </div>
 
-                        <div class="apartment-card">
-                            <div class="apartment-media" data-images="2">
+                        <div class="apartment__card">
+                            <div class="apartment__media" data-images="2">
                                 <img src="assets/images/ap4/ap-4-1.jpg" class="active" alt="">
                                 <img src="assets/images/ap4/ap-4-2.jpg" alt="">
 
-                                <div class="media-zones">
+                                <div class="apartment__media-zones">
                                     <span data-index="0"></span>
                                     <span data-index="1"></span>
                                 </div>
                             </div>
 
-                            <div class="apartment-info">
+                            <div class="apartment__info">
                                 <h3>Апартаменты<br><span>2 комнаты</span></h3>
 
-                                <p class="apartment-address">
-                                    ул. Симоновский Вал, 11/31к1
-                                </p>
-                                <p class="apartment-desc">
+                                <p>ул. Симоновский Вал, 11/31к1</p>
+                                <p class="apartment__info-desc">
                                     Комфортные апартаменты около метро Пролетарская
                                 </p>
-                                <span class="apartment-price">
+                                <span class="apartment__info-price">
                                     от 7 000 руб.
                                 </span>
                             </div>
                         </div>
 
-                        <div class="apartment-card">
-                            <div class="apartment-media" data-images="2">
+                        <div class="apartment__card">
+                            <div class="apartment__media" data-images="2">
                                 <img src="assets/images/ap5/ap-5-1.jpg" class="active" alt="">
                                 <img src="assets/images/ap5/ap-5-2.jpg" alt="">
                                 <img src="assets/images/ap5/ap-5-3.jpg" alt="">
 
-                                <div class="media-zones">
+                                <div class="apartment__media-zones">
                                     <span data-index="0"></span>
                                     <span data-index="1"></span>
                                     <span data-index="2"></span>
                                 </div>
                             </div>
 
-                            <div class="apartment-info">
+                            <div class="apartment__info">
                                 <h3>Апартаменты<br><span>1 комната</span></h3>
 
-                                <p class="apartment-address">
-                                    ул. Автозаводская, 23Б
-                                </p>
-                                <p class="apartment-desc">
+                                <p>ул. Автозаводская, 23Б</p>
+                                <p class="apartment__info-desc">
                                     Студия для тех, кто любит чистоту и эргономичность
                                 </p>
-                                <span class="apartment-price">
+                                <span class="apartment__info-price">
                                     от 4 400 руб.
                                 </span>
                             </div>
                         </div>
 
-                        <div class="apartment-card">
-                            <div class="apartment-media" data-images="2">
+                        <div class="apartment__card">
+                            <div class="apartment__media" data-images="2">
                                 <img src="assets/images/ap6/ap-6-1.jpg" class="active" alt="">
                                 <img src="assets/images/ap6/ap-6-2.jpg" alt="">
 
-                                <div class="media-zones">
+                                <div class="apartment__media-zones">
                                     <span data-index="0"></span>
                                     <span data-index="1"></span>
                                 </div>
                             </div>
 
-                            <div class="apartment-info">
+                            <div class="apartment__info">
                                 <h3>Апартаменты<br><span>3 комнаты</span></h3>
 
-                                <p class="apartment-address">
-                                    ул. Садовая-Спасская, 19/1
-                                </p>
-                                <p class="apartment-desc">
+                                <p>ул. Садовая-Спасская, 19/1</p>
+                                <p class="apartment__info-desc">
                                     Шикарная квартира в доме бизнес-класса
                                 </p>
-                                <span class="apartment-price">
+                                <span class="apartment__info-price">
                                     от 21 500 руб.
                                 </span>
                             </div>
@@ -305,21 +342,20 @@
     </section>
 
     <section id="reviews" class="reviews">
+
         <h2 class="section-colored-title animate">
             Отзывы
         </h2>
-
-        <div class="container reviews__container">
-            <button class="review__slider-btn prev" aria-label="Предыдущий отзыв">←</button>
-            <div class="review-window">
-                <div class="review-track"></div>
+        <div class="reviews__background">
+            <div class="container reviews__container">
+                <button class="review__slider-btn prev" aria-label="Предыдущий отзыв">←</button>
+                <div class="review__window">
+                    <div class="review__track"></div>
+                </div>
+                <button class="review__slider-btn next" aria-label="Следующий отзыв">→</button>
             </div>
-            <button class="review__slider-btn next" aria-label="Следующий отзыв">→</button>
         </div>
 
-        <div class="reviews-counter">
-            <span class="current">1</span>/<span class="total">0</span>
-        </div>
     </section>
 
     <footer id="contacts" class="contacts">
@@ -329,9 +365,9 @@
                     Забронируйте <span>сейчас</span>
                 </h3>
                 <form class="contacts__form">
-                    <input type="text" placeholder="Ваше имя" required>
-                    <input type="tel" placeholder="Ваш номер телефона" required>
-                    <textarea placeholder="Комментарий"></textarea>
+                    <input id="name" type="text" autocomplete="name" placeholder="Ваше имя" required>
+                    <input id="tel" type="tel" autocomplete="tel" placeholder="Ваш номер телефона" required>
+                    <textarea id="comment" placeholder="Комментарий"></textarea>
                     <button type="submit">Отправить</button>
                 </form>
             </div>
