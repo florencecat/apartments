@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /data/
+
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+
+Sitemap: https://ovapart.ru/sitemap.xml
