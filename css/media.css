@@ -116,7 +116,7 @@
   }
 
   .location__map {
-    width: 100%;
+    width: 860px;
     height: 420px;
     margin: auto;
   }
@@ -247,6 +247,16 @@
   .apartment__info-desc {
     display: none;
   }
+
+  .location__map {
+    max-width: 860px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .contacts__info {
+    min-height: 200px;
+  }
 }
 
 /* ==================================================
@@ -300,12 +310,12 @@
     width: 90%;
   }
 
-  .review__slider-btn {
-    display: none;
-  }
-
   .location__about {
     padding: 32px 24px;
+  }
+
+  .contacts__info {
+    min-height: 200px;
   }
 }
 

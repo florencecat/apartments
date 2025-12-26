@@ -1,5 +1,3 @@
-initMap();
-
 async function initMap() {
     await ymaps3.ready;
     const { YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer } = ymaps3;
@@ -38,3 +36,5 @@ async function initMap() {
             })
         });
 }
+
+initMap();

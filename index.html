@@ -14,8 +14,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
-    <script crossorigin src="https://cdn.jsdelivr.net/npm/@babel/standalone@7/babel.min.js"></script>
     <script src="https://api-maps.yandex.ru/v3/?apikey=25b25e10-a4b3-4ce4-9853-da185ff69c95&lang=ru_RU"></script>
+    <script crossorigin src="https://cdn.jsdelivr.net/npm/@babel/standalone@7/babel.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/map.js"></script>
+    <script type="module" src="js/reviews.js"></script>
 </head>
 
 <body>
@@ -25,8 +28,8 @@
             <div class="header__logo"><span>ОВ</span>Апарт</div>
 
             <nav class="header__menu-items">
+                <a href="#about">О нас</a>
                 <a href="#apartments">Апартаменты</a>
-                <a href="#">О нас</a>
                 <a href="#location">Локации</a>
                 <a href="#reviews">Отзывы</a>
                 <a href="#contacts">Связаться</a>
@@ -372,19 +375,15 @@
                 </form>
             </div>
             <div class="contacts__info">
-                <a href="https://vk.com/posutochno_moskva_ovapart" aria-label="WhatsApp">
+                <a href="https://vk.com/posutochno_moskva_ovapart">
                     <span class="icon vk-icon"></span>
                 </a>
-                <a href="https://t.me/investirui_vposutku" aria-label="Telegram">
+                <a href="https://t.me/investirui_vposutku">
                     <span class="icon tg-icon"></span>
                 </a>
             </div>
         </div>
     </footer>
-
-    <script src="js/main.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/reviews.js"></script>
 </body>
 
 </html>
