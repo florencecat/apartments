@@ -1,3 +1,92 @@
+/* ===== HOVER ===== */
+@media (hover: hover) {
+
+  .features__card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  }
+
+  .features__card:hover::before {
+    opacity: 1;
+  }
+
+  .features__card:hover h3,
+  .features__card:hover p,
+  .features__card:hover .features__card-number {
+    color: #f7f6f2;
+  }
+
+  /* акцент на цифру */
+  .features__card:hover .features__card-number {
+    transform: translateY(10);
+  }
+
+  .features__card:hover .features__card-number {
+    transform: translateY(-8px);
+  }
+
+  .features__card:hover::after {
+    top: -40%;
+    opacity: 1;
+  }
+}
+
+/* ==================================================
+   Mobile menu (burger)
+================================================== */
+
+.header__burger {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--text-color);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.header__burger span,
+.header__burger span::before,
+.header__burger span::after {
+  position: absolute;
+  left: 50%;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+  transform: translateX(-50%);
+  transition: all .3s ease;
+  content: "";
+}
+
+.header__burger span {
+  top: 50%;
+}
+
+.header__burger span::before {
+  top: -6px;
+}
+
+.header__burger span::after {
+  top: 6px;
+}
+
+/* active state */
+.header.open .header__burger span {
+  background: transparent;
+}
+
+.header.open .header__burger span::before {
+  top: 0;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.header.open .header__burger span::after {
+  top: 0;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
 /* ==================================================
    <= 1200px — ноутбууки / маленькие десктопы
 ================================================== */
@@ -48,7 +137,7 @@
   }
 
   .header__content {
-    max-width: 92%;
+    max-width: 75%;
     padding: 14px 24px;
   }
 
@@ -103,10 +192,6 @@
     grid-template-columns: 1fr;
   }
 
-  .apartment__media {
-    height: 380px;
-  }
-
   .apartment__info {
     width: auto;
     text-align: left;
@@ -124,13 +209,54 @@
   .contacts__container {
     grid-template-columns: 1fr;
   }
-}
 
+  .header__burger {
+    display: block;
+  }
+
+  .header__menu-items {
+    position: fixed;
+    inset: 0;
+    background: rgba(247, 246, 242, 0.96);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    font-size: 20px;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+    z-index: 90;
+  }
+
+  .header.open .header__menu-items {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .header__menu-items a {
+    font-size: 22px;
+  }
+
+  .header__button {
+    display: none;
+  }
+
+  .apartment__info-desc {
+    display: none;
+  }
+}
 
 /* ==================================================
    <= 768px — планшеты / большие телефоны
 ================================================== */
 @media (max-width: 768px) {
+
+  .header__content {
+    width: 75%;
+  }
 
   .section-title,
   .section-colored-title {
@@ -180,101 +306,6 @@
 
   .location__about {
     padding: 32px 24px;
-  }
-}
-
-/* ==================================================
-   Mobile menu (burger)
-================================================== */
-
-.header__burger {
-  display: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--text-color);
-  cursor: pointer;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.header__burger span,
-.header__burger span::before,
-.header__burger span::after {
-  position: absolute;
-  left: 50%;
-  width: 18px;
-  height: 2px;
-  background: #fff;
-  transform: translateX(-50%);
-  transition: all .3s ease;
-  content: "";
-}
-
-.header__burger span {
-  top: 50%;
-}
-
-.header__burger span::before {
-  top: -6px;
-}
-
-.header__burger span::after {
-  top: 6px;
-}
-
-/* active state */
-.header.open .header__burger span {
-  background: transparent;
-}
-
-.header.open .header__burger span::before {
-  top: 0;
-  transform: translateX(-50%) rotate(45deg);
-}
-
-.header.open .header__burger span::after {
-  top: 0;
-  transform: translateX(-50%) rotate(-45deg);
-}
-
-/* ==================================================
-   Mobile layout
-================================================== */
-@media (max-width: 992px) {
-
-  .header__burger {
-    display: block;
-  }
-
-  .header__menu-items {
-    position: fixed;
-    inset: 0;
-    background: rgba(247, 246, 242, 0.96);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    font-size: 20px;
-
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .3s ease;
-    z-index: 90;
-  }
-
-  .header.open .header__menu-items {
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  .header__menu-items a {
-    font-size: 22px;
-  }
-
-  .header__button {
-    display: none;
   }
 }
 
@@ -336,6 +367,11 @@
 
   .apartment__media {
     height: 300px;
+    width: 320px;
+  }
+
+  .apartment__info-desc {
+    display: none;
   }
 
   .apartment__info-price {
@@ -374,6 +410,10 @@
   .section-title,
   .section-colored-title {
     font-size: 26px;
+  }
+
+  .apartment__info-desc {
+    display: none;
   }
 
   .about__media,

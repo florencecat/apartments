@@ -1,8 +1,6 @@
 const reviewTrack = document.querySelector('.review__track');
 const prevBtn = document.querySelector('.prev');
 const nextBtn = document.querySelector('.next');
-const currentEl = document.querySelector('.reviews__counter .current');
-const totalEl = document.querySelector('.reviews__counter .total');
 
 let reviews = [];
 let reviewIndex = 0;
@@ -12,7 +10,6 @@ fetch('data/reviews.json')
     .then(data => {
         reviews = data;
         renderReviews();
-        totalEl.textContent = reviews.length;
         updateSlider();
     });
 
@@ -30,7 +27,6 @@ function renderReviews() {
 function updateSlider() {
     const slideWidth = reviewTrack.parentElement.offsetWidth + 20;
     reviewTrack.style.transform = `translateX(-${index * slideWidth}px)`;
-    currentEl.textContent = index + 1;
 }
 
 prevBtn.addEventListener('click', () => {

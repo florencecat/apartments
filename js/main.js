@@ -100,12 +100,12 @@ const burger = document.querySelector('.header__burger');
 const menuLinks = document.querySelectorAll('.header__menu-items a');
 
 burger.addEventListener('click', () => {
-    header.classList.toggle('open');
+  header.classList.toggle('open');
 });
 
 // закрытие меню по клику на пункт
 menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        header.classList.remove('open');
-    });
+  link.addEventListener('click', () => {
+    header.classList.remove('open');
+  });
 });
