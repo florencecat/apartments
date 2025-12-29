@@ -1,6 +1,12 @@
 const slider = document.querySelector('.apartments__slider-window');
 const track = document.querySelector('.apartments__slider-track');
 const slides = document.querySelectorAll('.apartment__card');
+const openPolicy = document.getElementById('openPolicy');
+const closePolicy = document.getElementById('closePolicy');
+const policyModal = document.getElementById('policyModal');
+const header = document.querySelector('.header');
+const burger = document.querySelector('.header__burger');
+const menuLinks = document.querySelectorAll('.header__menu-items a');
 
 let index = 0;
 let startX = 0;
@@ -20,6 +26,8 @@ slider.addEventListener('mousedown', touchStart);
 slider.addEventListener('mousemove', touchMove);
 slider.addEventListener('mouseup', touchEnd);
 slider.addEventListener('mouseleave', touchEnd);
+
+// slider
 
 function touchStart(e) {
   startX = getX(e);
@@ -55,6 +63,8 @@ function setPosition() {
   track.style.transform = `translateX(${currentTranslate}px)`;
 }
 
+// photo switch
+
 function getX(e) {
   return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
 }
@@ -88,24 +98,38 @@ document.querySelectorAll('.apartment__media').forEach(media => {
     });
   });
 
-  /* Возврат к первой картинке */
   media.addEventListener('mouseleave', () => {
     images.forEach(img => img.classList.remove('active'));
     images[0].classList.add('active');
   });
 });
 
-const header = document.querySelector('.header');
-const burger = document.querySelector('.header__burger');
-const menuLinks = document.querySelectorAll('.header__menu-items a');
+// burger
 
 burger.addEventListener('click', () => {
   header.classList.toggle('open');
 });
 
-// закрытие меню по клику на пункт
 menuLinks.forEach(link => {
   link.addEventListener('click', () => {
     header.classList.remove('open');
   });
+});
+
+// policy
+
+openPolicy.addEventListener('click', (e) => {
+  e.preventDefault();
+  policyModal.classList.add('active');
+});
+
+closePolicy.addEventListener('click', () => {
+  policyModal.classList.remove('active');
+});
+
+// Закрытие по клику на фон
+policyModal.addEventListener('click', (e) => {
+  if (e.target === policyModal) {
+    policyModal.classList.remove('active');
+  }
 });

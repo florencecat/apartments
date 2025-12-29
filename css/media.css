@@ -349,11 +349,11 @@
   }
 
   .hero__title {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .hero__text {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .about__media-container {
@@ -405,16 +405,24 @@
   .contacts__info {
     min-height: 200px;
   }
+
+  .contacts__form-number-container {
+    font-size: 12px;
+  }
 }
 
 
 /* ==================================================
    <= 360px — очень маленькие экраны
 ================================================== */
-@media (max-width: 360px) {
+@media (max-width: 375px) {
 
   .hero__title {
     font-size: 24px;
+  }
+
+  .hero__text {
+    font-size: 10px;
   }
 
   .section-title,

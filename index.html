@@ -27,6 +27,7 @@
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/map.js"></script>
     <script type="module" src="js/reviews.js"></script>
+    <script type="module" src="js/feedback.js"></script>
 </head>
 
 <body>
@@ -404,12 +405,31 @@
                 <h3 class="contacts__form-title">
                     Забронируйте <span>сейчас</span>
                 </h3>
-                <form class="contacts__form">
-                    <input id="name" type="text" autocomplete="name" placeholder="Ваше имя" required>
-                    <input id="tel" type="tel" autocomplete="tel" placeholder="Ваш номер телефона" required>
+                <form id="contactForm" class="contacts__form">
+                    <input id="name" type="text" autocomplete="name" placeholder="Ваше имя">
+                    <input id="phone" type="tel" autocomplete="tel" placeholder="Ваш номер телефона">
                     <textarea id="comment" placeholder="Комментарий"></textarea>
                     <button type="submit">Отправить</button>
+
+                    <p class="form-policy">
+                        Нажимая кнопку «Отправить», вы даёте согласие на обработку
+                        <a href="#" id="openPolicy">персональных данных</a>
+                    </p>
                 </form>
+                <div class="contacts__form-number-container">
+                    <p class="contacts__form-number">
+                        либо позвоните по номеру
+                    </p>
+                    <a href="callto:">
+                        +7 930 035-28-93
+                    </a>
+                </div>
+
+                <div id="formOverlay" class="form-overlay">
+                    <div class="form-overlay__content">
+                        <p>Спасибо! Заявка отправлена</p>
+                    </div>
+                </div>
             </div>
             <div class="contacts__info">
                 <a href="https://vk.com/posutochno_moskva_ovapart">
@@ -420,7 +440,40 @@
                 </a>
             </div>
         </div>
+        <p class="footer__company-info">© ОВАпарт 2025</p>
     </footer>
+
+    <div id="policyModal" class="modal">
+        <div class="modal__content">
+            <button class="modal__close" id="closePolicy">×</button>
+            <h2>Политика конфиденциальности</h2>
+            <p>
+                Настоящая политика обработки персональных данных составлена
+                в соответствии с Федеральным законом №152-ФЗ
+                «О персональных данных».
+            </p>
+            <p>
+                Оператор персональных данных: ООО «ОВАпарт».
+            </p>
+            <p>
+                Персональные данные, обрабатываемые на сайте:
+                имя, номер телефона, комментарий.
+            </p>
+            <p>
+                Цель обработки персональных данных —
+                обработка заявок на бронирование апартаментов.
+            </p>
+            <p>
+                Персональные данные не передаются третьим лицам,
+                за исключением случаев, предусмотренных законодательством РФ.
+            </p>
+            <p>
+                Пользователь может отозвать согласие на обработку
+                персональных данных, направив запрос оператору.
+            </p>
+        </div>
+    </div>
+
 </body>
 
 </html>
