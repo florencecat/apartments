@@ -104,6 +104,35 @@ document.querySelectorAll('.apartment__media').forEach(media => {
   });
 });
 
+// header collapse on scroll
+
+let headerCollapsed = false;
+let scrollTicking = false;
+
+function updateHeaderState() {
+  const y = window.scrollY || window.pageYOffset;
+
+  // hysteresis to avoid flicker around the threshold
+  if (!headerCollapsed && y > 80) {
+    header.classList.add('scrolled');
+    headerCollapsed = true;
+  } else if (headerCollapsed && y < 40) {
+    header.classList.remove('scrolled');
+    headerCollapsed = false;
+  }
+
+  scrollTicking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    scrollTicking = true;
+    requestAnimationFrame(updateHeaderState);
+  }
+}, { passive: true });
+
+updateHeaderState();
+
 // burger
 
 burger.addEventListener('click', () => {

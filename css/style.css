@@ -60,6 +60,7 @@ section {
 }
 
 .header__content {
+    box-sizing: border-box;
     max-width: 75%;
     margin: 0 auto;
     padding: 16px 32px;
@@ -70,16 +71,31 @@ section {
     justify-content: end;
     gap: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition:
+        max-width .55s cubic-bezier(.22, .61, .36, 1),
+        padding .55s cubic-bezier(.22, .61, .36, 1),
+        background-color .3s ease,
+        box-shadow .4s ease;
+    will-change: max-width;
 }
 
 .header__logo {
     font-weight: 1000;
     font-size: 22px;
     margin-right: auto;
+    transition:
+        opacity .3s ease,
+        transform .5s cubic-bezier(.22, .61, .36, 1);
 }
 
 .header__logo span {
     color: var(--main-color);
+}
+
+.header__menu-items {
+    transition:
+        opacity .3s ease,
+        transform .5s cubic-bezier(.22, .61, .36, 1);
 }
 
 .header__menu-items a {
@@ -99,6 +115,75 @@ section {
     border-radius: 999px;
     text-decoration: none;
     font-size: 14px;
+    white-space: nowrap;
+    transition: box-shadow .4s ease, transform .3s ease;
+}
+
+/* ===== Header — collapsed (scrolled) state ===== */
+
+.header.scrolled .header__content {
+    width: 100%;
+    max-width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: transparent;
+    box-shadow: none;
+    pointer-events: none;
+}
+
+.header.scrolled .header__logo {
+    opacity: 0;
+    transform: translateX(-16px);
+    pointer-events: none;
+}
+
+.header.scrolled .header__menu-items {
+    opacity: 0;
+    transform: translateX(16px);
+    pointer-events: none;
+}
+
+.header.scrolled .header__button {
+    pointer-events: auto;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    /* запускаем после того, как кнопка доехала на место */
+    animation: header-btn-pulse 2.6s ease-in-out 0.6s infinite;
+}
+
+.header.scrolled .header__button:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.26);
+    animation-play-state: paused;
+}
+
+/* мягкое «дыхание» + пульсирующее кольцо в фирменном цвете */
+@keyframes header-btn-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow:
+            0 6px 18px rgba(0, 0, 0, 0.18),
+            0 0 0 0 rgba(162, 146, 79, 0.45);
+    }
+
+    50% {
+        transform: scale(1.045);
+        box-shadow:
+            0 8px 22px rgba(0, 0, 0, 0.22),
+            0 0 0 14px rgba(162, 146, 79, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow:
+            0 6px 18px rgba(0, 0, 0, 0.18),
+            0 0 0 0 rgba(162, 146, 79, 0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header.scrolled .header__button {
+        animation: none;
+    }
 }
 
 /* ===== Hero ===== */
