@@ -61,7 +61,7 @@ section {
 
 .header__content {
     box-sizing: border-box;
-    max-width: 75%;
+    max-width: min(1400px, 85%);
     margin: 0 auto;
     padding: 16px 32px;
     background: var(--header-background);
@@ -70,6 +70,7 @@ section {
     align-items: center;
     justify-content: end;
     gap: 16px;
+    min-width: 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     transition:
         max-width .55s cubic-bezier(.22, .61, .36, 1),
@@ -83,6 +84,8 @@ section {
     font-weight: 1000;
     font-size: 22px;
     margin-right: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
     transition:
         opacity .3s ease,
         transform .5s cubic-bezier(.22, .61, .36, 1);
@@ -93,6 +96,8 @@ section {
 }
 
 .header__menu-items {
+    white-space: nowrap;
+    flex-shrink: 0;
     transition:
         opacity .3s ease,
         transform .5s cubic-bezier(.22, .61, .36, 1);
@@ -108,26 +113,30 @@ section {
     color: var(--main-color);
 }
 
-.header__button {
-    background: var(--text-color);
+.header__button,
+.header__button_static {
     color: var(--header-background);
     padding: 10px 18px;
     border-radius: 999px;
     text-decoration: none;
     font-size: 14px;
+    line-height: 1.2;
     white-space: nowrap;
-    transition: box-shadow .4s ease, transform .3s ease;
+    flex-shrink: 0;
+    transition:
+        box-shadow .4s ease,
+        transform .3s ease,
+        opacity .3s ease,
+        padding .3s ease,
+        font-size .3s ease;
+}
+
+.header__button {
+    background: var(--text-color);
 }
 
 .header__button_static {
     background: var(--main-color);
-    color: var(--header-background);
-    padding: 10px 18px;
-    border-radius: 999px;
-    text-decoration: none;
-    font-size: 14px;
-    white-space: nowrap;
-    transition: box-shadow .4s ease, transform .3s ease;
 }
 
 /* ===== Header — collapsed (scrolled) state ===== */
@@ -161,19 +170,17 @@ section {
     animation: header-btn-pulse 2.6s ease-in-out 0.6s infinite;
 }
 
+/* при скролле остаётся только «Забронировать» */
 .header.scrolled .header__button_static {
-    pointer-events: auto;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    transform: translateX(16px);
+    pointer-events: none;
 }
 
 .header.scrolled .header__button:hover {
     transform: translateY(-2px) scale(1.04);
     box-shadow: 0 10px 26px rgba(0, 0, 0, 0.26);
     animation-play-state: paused;
-}
-
-.header.scrolled .header__button_static:hover {
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.26);
 }
 
 /* мягкое «дыхание» + пульсирующее кольцо в фирменном цвете */
@@ -238,21 +245,26 @@ section {
     position: absolute;
     right: 80px;
     bottom: 80px;
+    left: 40px;
     max-width: 520px;
+    margin-left: auto;
     color: #fff;
     z-index: 2;
+    overflow-wrap: break-word;
 }
 
 .hero__title {
     font-weight: 800;
-    font-size: 48px;
+    font-size: clamp(30px, 3.6vw, 48px);
     margin-bottom: 20px;
+    overflow-wrap: break-word;
 }
 
 .hero__text {
     font-weight: 600;
-    font-size: 18px;
+    font-size: clamp(14px, 1.4vw, 18px);
     margin-bottom: 40px;
+    overflow-wrap: break-word;
 }
 
 /* ===== Section ===== */
@@ -793,7 +805,7 @@ h3 {
     gap: 10px;
 }
 
-.contacts__form input,
+.contacts__form input:not([type="checkbox"]),
 textarea {
     background: #f7f6f2;
     padding: 8px;
@@ -808,8 +820,7 @@ textarea {
 
 .contacts__form button {
     padding: 16px;
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-top: 4px;
     border-radius: 16px;
     border: none;
     background: #111;
@@ -864,12 +875,22 @@ textarea {
     background-image: url("../assets/icons/tg.svg");
 }
 
+.max-icon {
+    background-image: url("../assets/icons/max.svg");
+}
+
+.wa-icon {
+    background-image: url("../assets/icons/wa.svg");
+}
+
 .contacts__info a:hover .icon {
     transform: translateY(-4px);
     opacity: .85;
 }
 
 .contacts__info {
+    display: flex;
+    align-items: flex-end;
     padding: 24px;
     width: auto;
     background: url("../assets/images/footer.webp") center / cover no-repeat;
@@ -887,10 +908,23 @@ textarea {
 }
 
 .form-policy {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
     font-size: 12px;
     color: #777;
-    text-align: center;
-    margin-top: 8px;
+    margin-top: 4px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.form-policy input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: var(--main-color);
+    cursor: pointer;
 }
 
 .form-policy a {

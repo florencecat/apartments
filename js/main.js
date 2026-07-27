@@ -14,8 +14,28 @@ let currentTranslate = 0;
 let prevTranslate = 0;
 let isDragging = false;
 
-const slideWidth = slides[0].offsetWidth + 24;
-const maxIndex = slides.length - Math.floor(slider.offsetWidth / slideWidth);
+let slideWidth = 0;
+let maxIndex = 0;
+
+// отступ берём из CSS (он разный на брейкпоинтах), а не хардкодим
+function measureSlider() {
+  const gap = parseFloat(getComputedStyle(track).gap) || 0;
+  slideWidth = slides[0].offsetWidth + gap;
+  maxIndex = Math.max(0, slides.length - Math.floor(slider.offsetWidth / slideWidth));
+  index = Math.min(index, maxIndex);
+}
+
+measureSlider();
+
+// пересчитываем при смене размера/ориентации, иначе слайды уезжают
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    measureSlider();
+    setPosition();
+  }, 150);
+});
 
 /* ===== TOUCH + MOUSE ===== */
 slider.addEventListener('touchstart', touchStart);

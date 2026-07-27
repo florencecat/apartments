@@ -1,8 +1,15 @@
 const form = document.getElementById('contactForm');
 const overlay = document.getElementById('formOverlay');
 
+const policyAgree = document.getElementById('policyAgree');
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (!policyAgree.checked) {
+        policyAgree.reportValidity();
+        return;
+    }
 
     const data = {
         name: document.getElementById('name').value,
