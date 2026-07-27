@@ -359,8 +359,9 @@
     display: none;
   }
 
-  .apartment__info-price {
-    font-size: 16px;
+  .apartment__info-book {
+    font-size: 13px;
+    padding: 8px 20px;
   }
 
   .location__map {
