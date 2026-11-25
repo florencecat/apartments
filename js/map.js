@@ -1,4 +1,4 @@
-export async function initMap() {
+async function initMap() {
     await new Promise((resolve, reject) => {
         const script = document.createElement('script');
         script.src = 'https://api-maps.yandex.ru/v3/?apikey=25b25e10-a4b3-4ce4-9853-da185ff69c95&lang=ru_RU';
@@ -44,3 +44,5 @@ export async function initMap() {
     });
     document.getElementById('mapFallback').hidden = true;
 }
+
+initMap().catch(error => console.error('Не удалось загрузить карту', error));

@@ -1,6 +1,5 @@
 const storageKey = 'ovapart-cookie-consent';
 const banner = document.getElementById('cookieBanner');
-const settings = document.getElementById('cookieSettings');
 
 let choice;
 try {
@@ -9,7 +8,7 @@ try {
     // The banner still works when browser storage is blocked.
 }
 
-function enableOptionalServices() {
+function enableAnalytics() {
     window.ym = window.ym || function () {
         (window.ym.a = window.ym.a || []).push(arguments);
     };
@@ -27,47 +26,30 @@ function enableOptionalServices() {
     script.async = true;
     script.src = 'https://mc.yandex.ru/metrika/tag.js?id=106063524';
     document.head.append(script);
-
-    import('./map.js')
-        .then(({ initMap }) => initMap())
-        .catch(error => console.error('Не удалось загрузить карту', error));
 }
 
 function saveChoice(nextChoice) {
-    const previousChoice = choice;
-    choice = nextChoice;
+    if (banner.hidden) {
+        return;
+    }
 
     try {
-        localStorage.setItem(storageKey, choice);
+        localStorage.setItem(storageKey, nextChoice);
     } catch {
         // Apply the choice for the current page even without browser storage.
     }
 
     banner.hidden = true;
-    settings.hidden = false;
-
-    if (choice === 'accepted' && previousChoice !== 'accepted') {
-        enableOptionalServices();
-    }
-    if (choice === 'declined' && previousChoice === 'accepted') {
-        window.location.reload();
-    } else if (previousChoice === 'accepted' || previousChoice === 'declined') {
-        settings.focus({ preventScroll: true });
+    if (nextChoice === 'accepted') {
+        enableAnalytics();
     }
 }
 
 document.getElementById('acceptCookies').addEventListener('click', () => saveChoice('accepted'));
-document.getElementById('declineCookies').addEventListener('click', () => saveChoice('declined'));
+document.getElementById('essentialCookies').addEventListener('click', () => saveChoice('declined'));
 
-settings.addEventListener('click', () => {
-    banner.hidden = false;
-    document.getElementById('cookieBannerTitle').focus();
-});
-
-const hasChoice = choice === 'accepted' || choice === 'declined';
-banner.hidden = hasChoice;
-settings.hidden = !hasChoice;
+banner.hidden = choice === 'accepted' || choice === 'declined';
 
 if (choice === 'accepted') {
-    enableOptionalServices();
+    enableAnalytics();
 }

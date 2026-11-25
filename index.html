@@ -25,6 +25,7 @@
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/legal-dialog.js"></script>
     <script type="module" src="js/cookie-consent.js"></script>
+    <script type="module" src="js/map.js"></script>
     <script type="module" src="js/reviews.js"></script>
     <script type="module" src="js/feedback.js"></script>
 
@@ -761,24 +762,20 @@
             <p class="footer__legal">
                 <a class="footer__legal-link" href="assets/legal/personal-data-processing-policy.html"
                     data-legal-document aria-haspopup="dialog">Политика обработки персональных данных</a>
-                <span class="footer__cookie-settings">
-                    <span aria-hidden="true">·</span>
-                    <button class="footer__legal-link" type="button" id="cookieSettings" aria-controls="cookieBanner"
-                        hidden>Настройки cookie</button>
-                </span>
             </p>
         </div>
     </footer>
 
     <section id="cookieBanner" class="cookie-banner" aria-labelledby="cookieBannerTitle" hidden>
-        <h2 id="cookieBannerTitle" tabindex="-1">Файлы cookie</h2>
-        <p>С вашего согласия мы используем cookie для анализа посещаемости и работы встроенной карты.
+        <h2 id="cookieBannerTitle">Файлы cookie</h2>
+        <p>Мы используем необходимые cookie для работы сайта, включая встроенную карту Яндекса.
             <a href="assets/legal/cookie-policy.html" data-legal-document aria-haspopup="dialog">Политика использования
                 cookie</a>.
         </p>
         <div class="cookie-banner__actions">
-            <button type="button" id="acceptCookies">Принять</button>
-            <button type="button" id="declineCookies">Отказаться</button>
+            <button type="button" class="cookie-banner__actions-accept-necessary" id="essentialCookies">Только
+                необходимые</button>
+            <button type="button" class="cookie-banner__actions-accept-all" id="acceptCookies">Разрешить все</button>
         </div>
     </section>
 

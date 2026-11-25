@@ -1024,28 +1024,12 @@ textarea {
     text-align: center;
 }
 
-.footer__cookie-settings {
-    white-space: nowrap;
-}
-
-.footer__cookie-settings:has(button[hidden]) {
-    display: none;
-}
-
 .footer__legal-link {
     color: inherit;
     text-decoration: underline;
     text-decoration-color: transparent;
     text-underline-offset: 0.2em;
     transition: color 180ms ease, text-decoration-color 180ms ease;
-}
-
-.footer__legal button {
-    padding: 0;
-    border: 0;
-    background: none;
-    font: inherit;
-    cursor: pointer;
 }
 
 .footer__legal-link:hover,
@@ -1095,20 +1079,28 @@ textarea {
     min-height: 44px;
     padding: 8px 12px;
     border: 1px solid #8e7d42;
-    border-radius: 8px;
-    background: #f8f5ea;
-    color: #29271f;
+    border-radius: 16px;
     font: inherit;
     cursor: pointer;
 }
 
-.cookie-banner__actions button:is(:hover, :focus-visible) {
+.cookie-banner__actions-accept-necessary {
+    background-color: #f8f5ea;
+    color: #29271f;
+}
+
+.cookie-banner__actions-accept-necessary:is(:hover, :focus-visible) {
     background-color: #ede5cb;
     border-color: #685b2c;
 }
 
-.cookie-banner__actions button:active {
+.cookie-banner__actions-accept-necessary:active {
     background-color: #e2d7b4;
+}
+
+.cookie-banner__actions-accept-all {
+    background-color: var(--text-color);
+    color: #f8f5ea;
 }
 
 html:has(.legal-dialog[open]) {
@@ -1171,6 +1163,7 @@ html:has(.legal-dialog[open]) {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+
     .contacts__form button,
     .cookie-banner__actions button {
         transition: background-color 180ms ease, border-color 180ms ease, transform 150ms ease;
@@ -1250,6 +1243,7 @@ html:has(.legal-dialog[open]) {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     .footer__legal-link,
     .form-policy__legal-doc,
     .cookie-banner a {
