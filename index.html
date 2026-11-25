@@ -690,15 +690,23 @@
                     Забронируйте <span>сейчас</span>
                 </h3>
                 <form id="contactForm" class="contacts__form">
-                    <input id="name" type="text" autocomplete="name" placeholder="Ваше имя">
-                    <input id="phone" type="tel" autocomplete="tel" placeholder="Ваш номер телефона">
+                    <label class="contacts__form-field" for="name">
+                        <span>Ваше имя<span class="contacts__required" aria-hidden="true">*</span></span>
+                        <input id="name" type="text" autocomplete="name" required placeholder="Имя">
+                    </label>
+                    <label class="contacts__form-field" for="phone">
+                        <span>Ваш номер телефона<span class="contacts__required" aria-hidden="true">*</span></span>
+                        <input id="phone" type="tel" autocomplete="tel" required placeholder="Номер телефона">
+                    </label>
                     <textarea id="comment" placeholder="Комментарий"></textarea>
 
                     <label class="form-policy">
                         <input type="checkbox" id="policyAgree" required>
                         <span>Даю <a class="form-policy__legal-doc"
                                 href="assets/legal/personal-data-processing-agreement.html" data-legal-document
-                                aria-haspopup="dialog">согласие на обработку персональных данных</a></span>
+                                aria-haspopup="dialog">согласие на обработку персональных данных</a>
+                            <span class="contacts__required" aria-hidden="true">*</span>
+                        </span>
                     </label>
 
                     <label class="form-policy">
@@ -709,6 +717,9 @@
                     </label>
 
                     <button type="submit" disabled>Отправить</button>
+                    <p class="contacts__form-hint"><span class="contacts__required" aria-hidden="true">*</span>
+                        Заполните обязательные поля и отметьте согласие на обработку персональных данных.
+                    </p>
                 </form>
                 <div class="contacts__form-number-container">
                     <p class="contacts__form-number">

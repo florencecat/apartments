@@ -3,13 +3,20 @@ const overlay = document.getElementById('formOverlay');
 
 const policyAgree = document.getElementById('policyAgree');
 const advertisingAgree = document.getElementById('advertisingAgree');
+const nameInput = document.getElementById('name');
+const phoneInput = document.getElementById('phone');
 const submitButton = form.querySelector('button[type="submit"]');
 
-function updateSubmitButton() {
-    submitButton.disabled = !policyAgree.checked;
+function canSubmit() {
+    return policyAgree.checked && Boolean(nameInput.value.trim() && phoneInput.value.trim());
 }
 
-policyAgree.addEventListener('change', updateSubmitButton);
+function updateSubmitButton() {
+    submitButton.disabled = !canSubmit();
+}
+
+form.addEventListener('input', updateSubmitButton);
+form.addEventListener('change', updateSubmitButton);
 policyAgree.addEventListener('invalid', event => event.preventDefault());
 window.addEventListener('pageshow', updateSubmitButton);
 updateSubmitButton();
@@ -17,13 +24,13 @@ updateSubmitButton();
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    if (!policyAgree.checked) {
+    if (!canSubmit()) {
         return;
     }
 
     const data = {
-        name: document.getElementById('name').value,
-        phone: document.getElementById('phone').value,
+        name: nameInput.value.trim(),
+        phone: phoneInput.value.trim(),
         comment: document.getElementById('comment').value,
         advertisingConsent: advertisingAgree.checked
     };

@@ -814,7 +814,8 @@ h3 {
     text-align: center;
 }
 
-.contacts__form-title span {
+.contacts__form-title span,
+.contacts__required {
     color: var(--main-color);
 }
 
@@ -822,6 +823,20 @@ h3 {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.contacts__form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 14px;
+}
+
+.contacts__form-hint {
+    margin: 0;
+    color: var(--light-text-color);
+    font-size: 12px;
+    line-height: 1.4;
 }
 
 .contacts__form input:not([type="checkbox"]),
@@ -850,6 +865,14 @@ textarea {
 .contacts__form button:disabled {
     background: #767676;
     cursor: not-allowed;
+}
+
+.contacts__form button:enabled:is(:hover, :focus-visible) {
+    background-color: #393323;
+}
+
+.contacts__form button:enabled:active {
+    background-color: #211d15;
 }
 
 .form-overlay {
@@ -951,17 +974,21 @@ textarea {
     cursor: pointer;
 }
 
-.form-policy a {
-    color: var(--main-color);
+.form-policy a,
+.cookie-banner a {
+    color: #806d31;
     text-decoration: underline;
 }
 
-.form-policy__legal-doc {
+.form-policy__legal-doc,
+.cookie-banner a {
     transition: color 180ms ease, text-decoration-color 180ms ease;
 }
 
 .form-policy__legal-doc:hover,
-.form-policy__legal-doc:focus-visible {
+.form-policy__legal-doc:focus-visible,
+.cookie-banner a:hover,
+.cookie-banner a:focus-visible {
     color: #685b2c;
     text-decoration-color: currentColor;
 }
@@ -1057,10 +1084,6 @@ textarea {
     line-height: 1.5;
 }
 
-.cookie-banner a {
-    color: #534924;
-}
-
 .cookie-banner__actions {
     display: flex;
     flex-wrap: wrap;
@@ -1077,6 +1100,15 @@ textarea {
     color: #29271f;
     font: inherit;
     cursor: pointer;
+}
+
+.cookie-banner__actions button:is(:hover, :focus-visible) {
+    background-color: #ede5cb;
+    border-color: #685b2c;
+}
+
+.cookie-banner__actions button:active {
+    background-color: #e2d7b4;
 }
 
 html:has(.legal-dialog[open]) {
@@ -1139,8 +1171,19 @@ html:has(.legal-dialog[open]) {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .contacts__form button {
-        transition: background-color 180ms ease;
+    .contacts__form button,
+    .cookie-banner__actions button {
+        transition: background-color 180ms ease, border-color 180ms ease, transform 150ms ease;
+    }
+
+    .contacts__form button:enabled:hover,
+    .cookie-banner__actions button:hover {
+        transform: translateY(-1px);
+    }
+
+    .contacts__form button:enabled:active,
+    .cookie-banner__actions button:active {
+        transform: scale(.98);
     }
 
     .form-policy input[type="checkbox"] {
@@ -1207,7 +1250,9 @@ html:has(.legal-dialog[open]) {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .footer__legal-link {
+    .footer__legal-link,
+    .form-policy__legal-doc,
+    .cookie-banner a {
         transition: none;
     }
 }
