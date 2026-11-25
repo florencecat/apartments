@@ -1,9 +1,6 @@
 const slider = document.querySelector('.apartments__slider-window');
 const track = document.querySelector('.apartments__slider-track');
 const slides = document.querySelectorAll('.apartment__card');
-const openPolicy = document.getElementById('openPolicy');
-const closePolicy = document.getElementById('closePolicy');
-const policyModal = document.getElementById('policyModal');
 const header = document.querySelector('.header');
 const burger = document.querySelector('.header__burger');
 const menuLinks = document.querySelectorAll('.header__menu-items a');
@@ -163,22 +160,4 @@ menuLinks.forEach(link => {
   link.addEventListener('click', () => {
     header.classList.remove('open');
   });
-});
-
-// policy
-
-openPolicy.addEventListener('click', (e) => {
-  e.preventDefault();
-  policyModal.classList.add('active');
-});
-
-closePolicy.addEventListener('click', () => {
-  policyModal.classList.remove('active');
-});
-
-// Закрытие по клику на фон
-policyModal.addEventListener('click', (e) => {
-  if (e.target === policyModal) {
-    policyModal.classList.remove('active');
-  }
 });

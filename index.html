@@ -22,28 +22,12 @@
         href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
 
-    <script src="https://api-maps.yandex.ru/v3/?apikey=25b25e10-a4b3-4ce4-9853-da185ff69c95&lang=ru_RU"></script>
-    <script crossorigin src="https://cdn.jsdelivr.net/npm/@babel/standalone@7/babel.min.js"></script>
     <script type="module" src="js/main.js"></script>
-    <script type="module" src="js/map.js"></script>
+    <script type="module" src="js/legal-dialog.js"></script>
+    <script type="module" src="js/cookie-consent.js"></script>
     <script type="module" src="js/reviews.js"></script>
     <script type="module" src="js/feedback.js"></script>
 
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-            m[i].l = 1 * new Date();
-            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=106063524', 'ym');
-
-        ym(106063524, 'init', { ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", accurateTrackBounce: true, trackLinks: true });
-    </script>
-    <noscript>
-        <div><img src="https://mc.yandex.ru/watch/106063524" style="position:absolute; left:-9999px;" alt="" /></div>
-    </noscript>
-    <!-- /Yandex.Metrika counter -->
 </head>
 
 <body>
@@ -674,7 +658,10 @@
                 </p>
             </div>
             <div id="map" class="location__map">
-
+                <div id="mapFallback" class="location__map-fallback">
+                    <a href="https://yandex.ru/maps/?ll=37.588144%2C55.733842&z=11" target="_blank"
+                        rel="noopener noreferrer">Открыть Яндекс Карты</a>
+                </div>
             </div>
         </div>
     </section>
@@ -709,16 +696,25 @@
 
                     <label class="form-policy">
                         <input type="checkbox" id="policyAgree" required>
-                        <span>Я принимаю <a href="#" id="openPolicy">соглашение о конфиденциальности</a></span>
+                        <span>Даю <a class="form-policy__legal-doc"
+                                href="assets/legal/personal-data-processing-agreement.html" data-legal-document
+                                aria-haspopup="dialog">согласие на обработку персональных данных</a></span>
                     </label>
 
-                    <button type="submit">Отправить</button>
+                    <label class="form-policy">
+                        <input type="checkbox" id="advertisingAgree">
+                        <span>Даю <a class="form-policy__legal-doc" href="assets/legal/advertising-agreement.html"
+                                data-legal-document aria-haspopup="dialog">согласие на получение рекламной и
+                                информационной рассылки</a></span>
+                    </label>
+
+                    <button type="submit" disabled>Отправить</button>
                 </form>
                 <div class="contacts__form-number-container">
                     <p class="contacts__form-number">
                         либо позвоните по номеру
                     </p>
-                    <a href="callto:">
+                    <a class="form-policy__legal-doc" href="callto:">
                         +7 930 035-28-93
                     </a>
                 </div>
@@ -744,39 +740,48 @@
                 </a>
             </div>
         </div>
-        <p class="footer__company-info">© ОВАпарт 2025</p>
-    </footer>
-
-    <div id="policyModal" class="modal">
-        <div class="modal__content">
-            <button class="modal__close" id="closePolicy">×</button>
-            <h2>Политика конфиденциальности</h2>
-            <p>
-                Настоящая политика обработки персональных данных составлена
-                в соответствии с Федеральным законом №152-ФЗ
-                «О персональных данных».
+        <div class="container container__legal">
+            <p class="footer__legal">
+                <span class="footer__company-info">© ОВАпарт, 2026</span>
+                <span class="footer__company-info" aria-hidden="true">·</span>
+                <span class="footer__company-info">ИП Воробьева Ольга Александровна (ИНН 820400025131, ОГРНИП
+                    324774600297118)</span>
             </p>
-            <p>
-                Оператор персональных данных: ООО «ОВАпарт».
-            </p>
-            <p>
-                Персональные данные, обрабатываемые на сайте:
-                имя, номер телефона, комментарий.
-            </p>
-            <p>
-                Цель обработки персональных данных —
-                обработка заявок на бронирование апартаментов.
-            </p>
-            <p>
-                Персональные данные не передаются третьим лицам,
-                за исключением случаев, предусмотренных законодательством РФ.
-            </p>
-            <p>
-                Пользователь может отозвать согласие на обработку
-                персональных данных, направив запрос оператору.
+            <p class="footer__legal">
+                <a class="footer__legal-link" href="assets/legal/personal-data-processing-policy.html"
+                    data-legal-document aria-haspopup="dialog">Политика обработки персональных данных</a>
+                <span class="footer__cookie-settings">
+                    <span aria-hidden="true">·</span>
+                    <button class="footer__legal-link" type="button" id="cookieSettings" aria-controls="cookieBanner"
+                        hidden>Настройки cookie</button>
+                </span>
             </p>
         </div>
-    </div>
+    </footer>
+
+    <section id="cookieBanner" class="cookie-banner" aria-labelledby="cookieBannerTitle" hidden>
+        <h2 id="cookieBannerTitle" tabindex="-1">Файлы cookie</h2>
+        <p>С вашего согласия мы используем cookie для анализа посещаемости и работы встроенной карты.
+            <a href="assets/legal/cookie-policy.html" data-legal-document aria-haspopup="dialog">Политика использования
+                cookie</a>.
+        </p>
+        <div class="cookie-banner__actions">
+            <button type="button" id="acceptCookies">Принять</button>
+            <button type="button" id="declineCookies">Отказаться</button>
+        </div>
+    </section>
+
+    <dialog id="legalDialog" class="legal-dialog" aria-labelledby="legalDialogTitle">
+        <div class="legal-dialog__header">
+            <h2 id="legalDialogTitle"></h2>
+            <form method="dialog">
+                <button type="submit" aria-label="Закрыть документ" autofocus>×</button>
+            </form>
+        </div>
+        <p id="legalDialogStatus" class="legal-dialog__status" role="status"></p>
+        <iframe id="legalDocument" class="legal-dialog__document" title="Документ"
+            sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox" hidden></iframe>
+    </dialog>
 
 </body>
 

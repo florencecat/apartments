@@ -10,6 +10,7 @@
 
 html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
 }
 
 body {
@@ -640,9 +641,27 @@ h3 {
 }
 
 .location__map {
+    position: relative;
     overflow: hidden;
     border-radius: 40px;
     border: 3px solid var(--main-color);
+}
+
+.location__map-fallback {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    background: #fff;
+}
+
+.location__map-fallback[hidden] {
+    display: none;
+}
+
+.location__map-fallback a {
+    color: #534924;
 }
 
 /* ===== Reviews ===== */
@@ -762,7 +781,7 @@ h3 {
 /* ===== Contacts ===== */
 
 .contacts {
-    padding: 60px 0px;
+    padding-top: 60px;
 }
 
 .contacts__container {
@@ -826,6 +845,11 @@ textarea {
     background: #111;
     color: #fff;
     cursor: pointer;
+}
+
+.contacts__form button:disabled {
+    background: #767676;
+    cursor: not-allowed;
 }
 
 .form-overlay {
@@ -932,6 +956,16 @@ textarea {
     text-decoration: underline;
 }
 
+.form-policy__legal-doc {
+    transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.form-policy__legal-doc:hover,
+.form-policy__legal-doc:focus-visible {
+    color: #685b2c;
+    text-decoration-color: currentColor;
+}
+
 .contacts__form-number-container {
     font-size: 14px;
     margin-top: 20px;
@@ -949,57 +983,231 @@ textarea {
     color: var(--main-color);
 }
 
+.container__legal {
+    margin: auto;
+    padding: 30px;
+}
+
 .footer__company-info {
+    text-align: center;
+    opacity: 75%;
+}
+
+.footer__legal {
     text-align: center;
 }
 
-.modal {
-    padding-left: 15px;
-    padding-right: 15px;
+.footer__cookie-settings {
+    white-space: nowrap;
+}
+
+.footer__cookie-settings:has(button[hidden]) {
+    display: none;
+}
+
+.footer__legal-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.2em;
+    transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.footer__legal button {
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+.footer__legal-link:hover,
+.footer__legal-link:focus-visible {
+    color: #685b2c;
+    text-decoration-color: currentColor;
+}
+
+.cookie-banner {
+    box-sizing: border-box;
     position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+    right: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    left: 16px;
     z-index: 1000;
-}
-
-.modal.active {
-    opacity: 1;
-    pointer-events: all;
-}
-
-.modal__content {
+    width: fit-content;
+    max-width: min(480px, calc(100% - 32px));
+    max-height: calc(100dvh - 32px);
+    margin-left: auto;
+    padding: 20px;
+    overflow: auto;
+    border: 1px solid #d9d0af;
+    border-radius: 16px;
     background: #fff;
-    max-width: 520px;
-    width: 90%;
-    padding: 32px;
-    border-radius: 24px;
-    position: relative;
-    max-height: 80vh;
-    overflow-y: auto;
+    color: #29271f;
+    box-shadow: 0 6px 30px rgb(0 0 0 / 18%);
 }
 
-.modal__content h2 {
-    margin-bottom: 16px;
+.cookie-banner h2 {
+    font-size: 20px;
 }
 
-.modal__content p {
+.cookie-banner p {
+    margin: 8px 0 16px;
     font-size: 14px;
     line-height: 1.5;
-    margin-bottom: 12px;
 }
 
-.modal__close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: none;
-    border: none;
+.cookie-banner a {
+    color: #534924;
+}
+
+.cookie-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.cookie-banner__actions button {
+    flex: 1;
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 1px solid #8e7d42;
+    border-radius: 8px;
+    background: #f8f5ea;
+    color: #29271f;
+    font: inherit;
+    cursor: pointer;
+}
+
+html:has(.legal-dialog[open]) {
+    overflow: hidden;
+}
+
+.legal-dialog {
+    box-sizing: border-box;
+    width: min(840px, calc(100% - 24px));
+    max-height: calc(100dvh - 24px);
+    padding: 0;
+    border: 1px solid #d9d0af;
+    border-radius: 16px;
+    background: #fff;
+    color: #29271f;
+    overflow: hidden;
+}
+
+.legal-dialog[open] {
+    display: flex;
+    flex-direction: column;
+}
+
+.legal-dialog::backdrop {
+    background: rgb(0 0 0 / 48%);
+}
+
+.legal-dialog__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px clamp(12px, 4vw, 24px);
+    border-bottom: 1px solid #d9d0af;
+}
+
+.legal-dialog__header h2 {
+    margin: 0;
+    font-size: clamp(16px, 3vw, 20px);
+}
+
+.legal-dialog__header button {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #d9d0af;
+    border-radius: 8px;
+    background: #f8f5ea;
     font-size: 24px;
     cursor: pointer;
+}
+
+.legal-dialog__document {
+    width: 100%;
+    min-height: 0;
+    border: 0;
+}
+
+.legal-dialog__status {
+    padding: 16px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .contacts__form button {
+        transition: background-color 180ms ease;
+    }
+
+    .form-policy input[type="checkbox"] {
+        transition: transform 150ms ease;
+    }
+
+    .form-policy input[type="checkbox"]:checked {
+        transform: scale(1.08);
+    }
+
+    .form-policy input[type="checkbox"]:active {
+        transform: scale(.9);
+    }
+
+    .cookie-banner {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 200ms ease, transform 240ms ease, display 240ms allow-discrete;
+    }
+
+    .cookie-banner[hidden] {
+        opacity: 0;
+        transform: translateY(12px);
+        pointer-events: none;
+    }
+
+    .legal-dialog {
+        opacity: 0;
+        transform: translateY(8px) scale(.98);
+        transition: opacity 200ms ease, transform 240ms ease,
+            display 240ms allow-discrete, overlay 240ms allow-discrete;
+    }
+
+    .legal-dialog[open] {
+        opacity: 1;
+        transform: none;
+    }
+
+    .legal-dialog::backdrop {
+        background-color: transparent;
+        transition: background-color 240ms ease, display 240ms allow-discrete,
+            overlay 240ms allow-discrete;
+    }
+
+    .legal-dialog[open]::backdrop {
+        background-color: rgb(0 0 0 / 48%);
+    }
+
+    @starting-style {
+        .cookie-banner:not([hidden]) {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        .legal-dialog[open] {
+            opacity: 0;
+            transform: translateY(8px) scale(.98);
+        }
+
+        .legal-dialog[open]::backdrop {
+            background-color: transparent;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .footer__legal-link {
+        transition: none;
+    }
 }

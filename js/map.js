@@ -1,4 +1,12 @@
-async function initMap() {
+export async function initMap() {
+    await new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://api-maps.yandex.ru/v3/?apikey=25b25e10-a4b3-4ce4-9853-da185ff69c95&lang=ru_RU';
+        script.addEventListener('load', resolve, { once: true });
+        script.addEventListener('error', reject, { once: true });
+        document.head.append(script);
+    });
+
     await ymaps3.ready;
     const { YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer } = ymaps3;
 
@@ -20,21 +28,19 @@ async function initMap() {
     map.addChild(new YMapDefaultSchemeLayer());
     map.addChild(new YMapDefaultFeaturesLayer());
 
-    fetch('data/apartments.json')
-        .then(res => res.json())
-        .then(data => {
-            data.forEach(a => {
-                const marker = new YMapDefaultMarker(
-                    {
-                        title: a["name"],
-                        subtitle: a["desc"],
-                        coordinates: a["coordinates"],
-                        staticHint: true
-                    }
-                );
-                map.addChild(marker);
-            })
-        });
-}
+    const response = await fetch('data/apartments.json');
+    if (!response.ok) {
+        throw new Error('Не удалось загрузить список апартаментов');
+    }
 
-initMap();
+    const apartments = await response.json();
+    apartments.forEach(apartment => {
+        map.addChild(new YMapDefaultMarker({
+            title: apartment.name,
+            subtitle: apartment.desc,
+            coordinates: apartment.coordinates,
+            staticHint: true
+        }));
+    });
+    document.getElementById('mapFallback').hidden = true;
+}
